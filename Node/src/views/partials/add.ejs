@@ -1,0 +1,40 @@
+<div class="popup">
+    <div class="popup_content">
+        <p id="closepopup">X</p>
+        <form id="actionform" action="/news" method="POST">
+            <table>
+                <input id="articleID" name="id" type="hidden" />
+                <tr>
+                    <td colspan="2"><h2>ADD NEWS</h2></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;"><label class='button' for="title_rendered">Title</label></td>
+                    <td><input id="title_rendered" type="text" name="title_rendered" placeholder="Enter Title" autocomplete="on" /></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;"><label class='button' for="content_rendered">Content</label></td>
+                    <td>
+                        <textarea id="content_rendered" type="text" name="content_rendered" placeholder="Enter Content" autocomplete="on" ></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;"><label class='button' for="excerpt_rendered">Excorpt</label></td>
+                    <td><input id="excerpt_rendered" type="text" name="excerpt_rendered" placeholder="Enter Excorpt" autocomplete="on" /></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;"><label class='button' for="head_json_title">Head Title</label></td>
+                    <td><input id="head_json_title" type="text" name="head_json_title" placeholder="Enter Head Title" autocomplete="on" /></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;"><label class='button' for="thumbnail_url">Thumbnail</label></td>
+                    <td><input id="thumbnail_url"type="text" name="thumbnail_url" placeholder="Enter Thumbnail" autocomplete="on" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="" value="ADD" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

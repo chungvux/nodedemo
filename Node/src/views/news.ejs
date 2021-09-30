@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeJS News</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__logo"><a href="/news">NodeJS News</a></div>
+        <%- include('./partials/search.ejs') %>
+    </header>
+    <div class="wrapper">
+        <div class="news">
+            <% if(articles !=null){ %>
+                <% articles.forEach(function(article, index) { %>
+                    <div>
+                        <div class="news__card">
+                            <img src='<%- article.thumbnail_url %>' alt='<%- article.head_json_title %>' />
+                            <a href="/news/<%- article.id %>">
+                                <h3>
+                                    <%- article.title_rendered %>
+                                </h3>
+                            </a>
+                            <p>
+                                <%- article.excerpt_rendered %>
+                            </p>                            
+                            <a style="color: rgb(9, 255, 0);" onclick="getID(this.id);" type="button" id="<%- article.id %>">EDIT</a>
+                            <a style="cursor: pointer; float: right;" href="/delete/<%- article.id %>">DELETE</a>
+                        </div>
+                    </div>
+                    <% })%>
+                        <% } else { %>
+                            <h2> No Post Found </h2>
+                            <% } %>
+        </div>
+    </div>
+
+
+    <%- include('./partials/add.ejs') %>
+        <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>
