@@ -135,7 +135,7 @@ newsRoute.post('/search', async (req, res) => {
 })
 
 
-newsRoute.get('https://demobasic-node.herokuapp.com//news/json/:id', async (req, res) => {
+newsRoute.get('/news/json/:id', async (req, res) => {
     let articleID = req.params.id
     let getID = `SELECT * FROM node WHERE id=${articleID}`
     try {
