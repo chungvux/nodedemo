@@ -46,7 +46,7 @@ newsRoute.post('/news', async (req, res) => {
     try {
         db.query(addNews, news, (err, news) => {
             if (!err) {
-                res.redirect('/news')
+                res.redirect('/')
             } else {
                 console.error(err)
             }
@@ -65,7 +65,7 @@ newsRoute.post('/editnews', async (req, res) => {
     try {
         db.query(editNews, [news.title_rendered, news.content_rendered, news.excerpt_rendered, news.head_json_title, news.thumbnail_url, news.id],(err, news) => {
             if (!err) {
-                res.redirect('/news')
+                res.redirect('/')
             } else {
                 console.error(err)
             }
@@ -82,7 +82,7 @@ newsRoute.get('/delete/:id', async (req, res) => {
     try {
         db.query(getNewsByID, (err, news) => {
             if (!err) {
-                res.redirect('/news')
+                res.redirect('/')
             } else {
                 console.log(err)
             }
