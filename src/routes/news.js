@@ -5,7 +5,7 @@ const db = require('../connection/connect')
 
 
 
-newsRoute.get('/news', async (req, res) => {
+newsRoute.get('/', async (req, res) => {
     let getAll = 'SELECT * FROM node'
     try {
         db.query(getAll, (err, news) => {
