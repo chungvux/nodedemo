@@ -26,7 +26,7 @@
         xmlhttp.send()
     }
     function getID(id) {
-        ajax_get(`http://localhost:4000/news/json/${id}`, function (data) { 
+        ajax_get(`https://demobasic-node.herokuapp.com/news/json/${id}`, function (data) { 
             document.getElementById("actionform").action = '/editnews'         
             
             console.log(data)
