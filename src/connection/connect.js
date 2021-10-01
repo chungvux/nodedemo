@@ -2,11 +2,11 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     connectionLimit : 10,
-    host: 'mysql-52666-0.cloudclusters.net',
-    port: 17194,
-    user: 'admin',
-    password: 'SOSQFMGI',
-    database: 'db_node'
+    host: 'sql10.freemysqlhosting.net',
+    port: 3306,
+    user: 'sql10441685',
+    password: 'yRIQkcwWY9',
+    database: 'sql10441685'
 })
 
 connection.connect((err) => {
