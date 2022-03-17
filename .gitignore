@@ -2,15 +2,15 @@
 node_modules
 
 # yarn error logs
-yarn-error.log
+# yarn-error.log
 
 # Environment varibales
-.env*
-!.env*.example
+# .env*
+# !.env*.example
 
 # Code coverage
-coverage
+# coverage
 
-.husky
+# .husky
 
-yarn.lock
+# yarn.lock
