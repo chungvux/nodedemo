@@ -1,16 +1,16 @@
 # Dependencies
-node_modules
+# node_modules
 
-yarn error logs
-yarn-error.log
+# yarn error logs
+# yarn-error.log
 
-Environment varibales
-.env*
-!.env*.example
+# Environment varibales
+# .env*
+# !.env*.example
 
-Code coverage
-coverage
+# Code coverage
+# coverage
 
-.husky
+# .husky
 
-yarn.lock
+# yarn.lock
