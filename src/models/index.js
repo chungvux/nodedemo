@@ -1,0 +1,12 @@
+module.exports.Token = require('./token.model');
+module.exports.BigLand = require('./bigLand.model');
+module.exports.SmallLand = require('./smallLand.model');
+module.exports.Mineral = require('./mineral.model');
+module.exports.Tree = require('./tree.model');
+module.exports.TreeContract = require('./treeContract.model');
+module.exports.Cart = require('./cart.model');
+module.exports.Box = require('./box.model');
+module.exports.HistoryTransaction = require('./historyTransaction.model');
+module.exports.HistoryLogin = require('./historyLogin.model');
+module.exports.HeroNFT = require('./heroNFT.model');
+module.exports.LandId = require('./landId');

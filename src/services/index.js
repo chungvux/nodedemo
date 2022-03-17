@@ -1,0 +1,12 @@
+module.exports.authService = require('./auth.service');
+module.exports.emailService = require('./email.service');
+module.exports.tokenService = require('./token.service');
+module.exports.userService = require('./user.service');
+module.exports.landService = require('./land.service');
+module.exports.cartService = require('./cart.service');
+module.exports.boxService = require('./box.service');
+module.exports.meService = require('./me.service');
+module.exports.miningService = require('./mining.service');
+module.exports.walletService = require('./wallet.service');
+module.exports.historyLoginService = require('./historyLogin.service');
+module.exports.historyTransactionService = require('./historyTransaction.service');
