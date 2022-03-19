@@ -6,12 +6,12 @@ const { checkIdSmallLand, checkOwnerLand } = require('../../middlewares/customMi
 
 const router = express.Router();
 
-router.route('/all').delete(authJwt, cartController.deleteAll);
+router.route('/all').delete(cartController.deleteAll);
 
 router.route('/:idSmallLand')
-    .get(authJwt,checkIdSmallLand,checkOwnerLand, cartController.addSmallLand)
-    .delete(authJwt,checkIdSmallLand, cartController.deleteSmallLand);
+    .get(checkIdSmallLand,checkOwnerLand, cartController.addSmallLand)
+    .delete(checkIdSmallLand, cartController.deleteSmallLand);
 
-router.route('/').get(authJwt, cartController.getCart);
+router.route('/').get(cartController.getCart);
 
 module.exports = router;

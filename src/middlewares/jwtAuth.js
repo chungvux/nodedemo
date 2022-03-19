@@ -38,7 +38,7 @@ const authJwt = async (req, res, next) => {
   }
 };
 
-const generateToken = (Address) => {
+const generateJWT = (Address) => {
   try {
     return jwt.sign({
       Address
@@ -52,5 +52,5 @@ const generateToken = (Address) => {
 
 module.exports = {
   authJwt,
-  generateToken,
+  generateJWT,
 };

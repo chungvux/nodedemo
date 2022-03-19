@@ -55,9 +55,19 @@ If you did not create an account, then ignore this email.`;
   await sendEmail(to, subject, text);
 };
 
+const sendEmailLoginCode = async (toEmail, toName, code) =>
+{
+  const subject = "Code Login";
+  const text = `Dear ${toName},
+  To login with your email, here is the code: ${code}.
+  Insert this code in order to login game`;
+  await sendEmail(toEmail, subject, text);
+}
+
 module.exports = {
   transport,
   sendEmail,
   sendResetPasswordEmail,
   sendVerificationEmail,
+  sendEmailLoginCode
 };

@@ -42,6 +42,9 @@ const treeSchema = new mongoose.Schema(
     Point: {
       type:Number,
       default:0
+    },
+    ListFriend:{
+      type:Array,
     }
   },
   { timestamps: true }

@@ -45,15 +45,15 @@ const getUserById = async (id) => {
  * @returns {Promise<User>}
  */
 const getUserByEmail = async (email) => {
-  return TreeContract.findOne({
-    email
+  return await TreeContract.findOne({
+    Email: email
   });
 };
 
 const getUserByAddress = async (address) =>
 {
   return await TreeContract.findOne({
-    address
+    Address: address
   });
 }
 

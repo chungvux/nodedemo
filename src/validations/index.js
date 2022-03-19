@@ -6,3 +6,4 @@ module.exports.boxValidation = require('./box.validation');
 module.exports.heroValidation = require('./hero.validation');
 module.exports.walletValidation = require('./wallet.validation');
 module.exports.transValidation = require('./historyTrans.validation');
+module.exports.clanValidation = require('./clan.validation');

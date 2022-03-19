@@ -1,9 +1,29 @@
 const httpStatus = require('http-status');
 const tokenService = require('./token.service');
 const userService = require('./user.service');
+const bcrypt = require('bcryptjs');
 const Token = require('../models/token.model');
 const ApiError = require('../utils/ApiError');
-const { tokenTypes } = require('../config/tokens');
+const {
+  tokenTypes
+} = require('../config/tokens');
+const {
+  writeHistoryLogin,
+  writeHistoryLogout
+} = require('./historyLogin.service');
+const {
+  sendEmailLoginCode
+} = require('./email.service');
+
+const generateCode = (length) => {
+  let text = "";
+  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
 
 /**
  * Login with username and password
@@ -12,10 +32,15 @@ const { tokenTypes } = require('../config/tokens');
  * @returns {Promise<User>}
  */
 const loginUserWithEmailAndPassword = async (email, password) => {
+  const code = generateCode(6);
   const user = await userService.getUserByEmail(email);
-  if (!user || !(await user.isPasswordMatch(password))) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
+  if (!user) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email');
   }
+  const isValid = bcrypt.compareSync(password, user.Password);
+  if (!isValid) throw new ApiError('Password wrong');
+  await writeHistoryLogin(user.Address, code);
+  await sendEmailLoginCode(user.Email, user.Username, code);
   return user;
 };
 
@@ -24,12 +49,19 @@ const loginUserWithEmailAndPassword = async (email, password) => {
  * @param {string} refreshToken
  * @returns {Promise}
  */
-const logout = async (refreshToken) => {
-  const refreshTokenDoc = await Token.findOne({ token: refreshToken, type: tokenTypes.REFRESH, blacklisted: false });
-  if (!refreshTokenDoc) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Not found');
+const logout = async (address) =>
+{
+  let status = "LOGIN"
+  const isLogout = await writeHistoryLogout(address);
+  // const refreshTokenDoc = await Token.findOne({ token: refreshToken, type: tokenTypes.REFRESH, blacklisted: false });
+  // if (!refreshTokenDoc) {
+  //   throw new ApiError(httpStatus.NOT_FOUND, 'Not found');
+  // }
+  // await refreshTokenDoc.remove();
+  if (isLogout) {
+    status = "LOGOUT"
   }
-  await refreshTokenDoc.remove();
+  return status;
 };
 
 /**
@@ -64,8 +96,13 @@ const resetPassword = async (resetPasswordToken, newPassword) => {
     if (!user) {
       throw new Error();
     }
-    await userService.updateUserById(user.id, { password: newPassword });
-    await Token.deleteMany({ user: user.id, type: tokenTypes.RESET_PASSWORD });
+    await userService.updateUserById(user.id, {
+      password: newPassword
+    });
+    await Token.deleteMany({
+      user: user.id,
+      type: tokenTypes.RESET_PASSWORD
+    });
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Password reset failed');
   }
@@ -83,8 +120,13 @@ const verifyEmail = async (verifyEmailToken) => {
     if (!user) {
       throw new Error();
     }
-    await Token.deleteMany({ user: user.id, type: tokenTypes.VERIFY_EMAIL });
-    await userService.updateUserById(user.id, { isEmailVerified: true });
+    await Token.deleteMany({
+      user: user.id,
+      type: tokenTypes.VERIFY_EMAIL
+    });
+    await userService.updateUserById(user.id, {
+      isEmailVerified: true
+    });
   } catch (error) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Email verification failed');
   }

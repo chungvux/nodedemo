@@ -10,3 +10,5 @@ module.exports.miningService = require('./mining.service');
 module.exports.walletService = require('./wallet.service');
 module.exports.historyLoginService = require('./historyLogin.service');
 module.exports.historyTransactionService = require('./historyTransaction.service');
+module.exports.clanService = require('./clan.service');
+module.exports.friendService = require('./friend.service');

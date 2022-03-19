@@ -20,6 +20,10 @@ const historyLoginSchema = mongoose.Schema({
   isLogin: {
     type: Boolean,
     default: false,
+  },
+  code: {
+    type: String,
+    default: '',
   }
 }, {
   _id: true,

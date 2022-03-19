@@ -13,7 +13,7 @@ const {
 
 const router = express.Router();
 
-router.get('/all-box', authJwt, boxController.getAllBoxes);
+router.get('/all-box', boxController.getAllBoxes);
 router.get('/shop-box', boxController.shopBoxes);
 router.post('/user-box', authJwt, validate(userValidation.getAddress), boxController.getUserBoxes);
 router.post('/hero/:tokenId', authJwt, boxController.openBox);

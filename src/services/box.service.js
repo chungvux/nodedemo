@@ -3,7 +3,7 @@ const {
 } = require('../models');
 const {
   BOX
-} = require('../models/Model.JSON/Percentage.model');
+} = require('../models/Percentage.model');
 
 const getAllBoxes = async () => {
 

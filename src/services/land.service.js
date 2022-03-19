@@ -10,7 +10,7 @@ const {
 
 const {
   BOX
-} = require('../models/Model.JSON/Percentage.model');
+} = require('../models/Percentage.model');
 const {
   heroSocket,
   landSocket
@@ -62,7 +62,8 @@ const getNFTLand = async (tokenId) => {
 heroSocket.once('buyNewBox', {
   filter: {},
   fromBlock: 'lastest'
-}, async (err, data) => {
+}, async (err, data) =>
+{
   if (err) return;
   if (data) {
     const address = data.returnValues[0];

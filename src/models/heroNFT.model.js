@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
-const { RATITY, SKIN } = require('./Model.JSON/hero.model');
+const {
+  RATITY,
+  SKIN
+} = require('./hero.model');
 
 const HeroNFTSchema = mongoose.Schema(
   {

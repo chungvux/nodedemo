@@ -9,3 +9,7 @@ module.exports.miningController = require('./mining.controller');
 module.exports.walletController = require('./wallet.controller');
 module.exports.historyLoginController = require('./historyLogin.controller');
 module.exports.historyTransactionController = require('./historyTransaction.controller');
+module.exports.clanController = require('./clan.controller');
+module.exports.friendController = require('./friend.controller');
+module.exports.meGameController = require('./meGame.ontroller');
+module.exports.loginController = require('./login.controller');

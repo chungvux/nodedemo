@@ -13,18 +13,27 @@ const listUserLogin = async (address) => {
   return listLogin
 }
 
+const compareCode = async (address, code) => {
+  let isCode = false;
+  const login = await HistoryLogin.findOne({
+    address,
+    isLogin: true
+  });
+  if (login) isCode = true;
+  return isCode
+}
+
 /**
    @param {string} address
    @returns {Promise<login>}
  */
-const writeHistoryLogin = async (address) => {
+const writeHistoryLogin = async (address, code) => {
   const login = await new HistoryLogin({
     address,
     loginTime: new Date().getTime(),
-    isLogin: true
+    isLogin: true,
+    code
   }).save();
-
-  return login
 }
 
 /**
@@ -32,20 +41,26 @@ const writeHistoryLogin = async (address) => {
    @param {string} idHistory
    @returns {Promise<logout>}
  */
-const writeHistoryLogout = async (address, idHistory) =>
+const writeHistoryLogout = async (address) =>
 {
-  const logout = await new HistoryLogin({
-    _id: idHistory,
+  let isLogout = false;
+  const login = await HistoryLogin.findOne({
     address,
-    logoutTime: new Date().getTime(),
-    isLogin: false
-  }).save();
-
-  return logout
+    isLogin: true
+  });
+  if (login) {
+    login.logoutTime = new Date().getTime();
+    login.isLogin = false;
+    login.code = "refresh";
+    await login.save();
+    isLogout = true;
+  }
+  return isLogout
 }
 
 module.exports = {
   listUserLogin,
   writeHistoryLogin,
-  writeHistoryLogout
+  writeHistoryLogout,
+  compareCode
 }

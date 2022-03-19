@@ -10,14 +10,14 @@ const {
   BOX,
   SKIN_RARITY,
   RATION_SKIN_BOX
-} = require('../models/Model.JSON/Percentage.model');
+} = require('../models/Percentage.model');
 
 const {
   COMMON_HERO,
   RARE_HERO,
   EPIC_HERO,
   LEGENDARY_HERO,
-} = require('../models/Model.JSON/Hero.model');
+} = require('../models/hero.model');
 
 const {
   boxService,

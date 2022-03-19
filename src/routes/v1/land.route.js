@@ -2,7 +2,10 @@ const express = require('express');
 const { landController } = require('../../controllers');
 const landValidation = require('../../validations/land.validation');
 const validate = require('../../middlewares/validate');
-const { generateToken, authJwt } = require('../../middlewares/jwtAuth');
+const {
+  generateJWT,
+  authJwt
+} = require('../../middlewares/jwtAuth');
 const { LandId, BigLand,Mineral } =require('../../models')
 
 const router = express.Router();
@@ -20,7 +23,7 @@ router.route('/mineral/:idMineral').get(validate(landValidation.getOneMineral), 
 router.route('/mineral').get(landController.getAllMineral);
 
 router.route('/create-token/:address').get((req, res) => {
-  const token = generateToken(req.params.address);
+  const token = generateJWT(req.params.address);
   res.status(200).json({ token });
 });
 

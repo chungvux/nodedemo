@@ -5,7 +5,7 @@ const {
 } = require('./plugins');
 const {
   CURRENCCY, BOX
-} = require('./Model.JSON/Percentage.model');
+} = require('./Percentage.model');
 
 const BoxSchema = mongoose.Schema(
   {

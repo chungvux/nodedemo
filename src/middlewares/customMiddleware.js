@@ -1,5 +1,6 @@
 const { BigLand, SmallLand, HeroNFT } = require('../models')
 const httpStatus = require('http-status');
+const web3 = require('../config/web3')
 const jwt = require('jsonwebtoken');
 //const ApiError = require('../utils/ApiError');
 
@@ -51,8 +52,17 @@ const checkBothHeroAndLand = async (req, res, next) => {
     next()
 };
 
+const checkIsAddress = (where,name) => async(req,res,next)=>{
+    let isAddress=await web3.utils.isAddress(req[where][name])
+    if(!isAddress){
+        return res.status(httpStatus.BAD_REQUEST).json({status:false,message:`${req[where][name]} is not address`})
+    }
+    next()
+}
+
 module.exports={
     checkIdSmallLand,
     checkBothHeroAndLand,
-    checkOwnerLand
+    checkOwnerLand,
+    checkIsAddress
 }

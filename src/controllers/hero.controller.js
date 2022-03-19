@@ -9,7 +9,7 @@ const {
   RARE_HERO,
   EPIC_HERO,
   LEGENDARY_HERO
-} = require('../models/Model.JSON/hero.model');
+} = require('../models/hero.model');
 
 const listHeroes = async (req, res) => {
   const {

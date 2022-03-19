@@ -10,3 +10,6 @@ module.exports.HistoryTransaction = require('./historyTransaction.model');
 module.exports.HistoryLogin = require('./historyLogin.model');
 module.exports.HeroNFT = require('./heroNFT.model');
 module.exports.LandId = require('./landId');
+module.exports.Clan = require('./clan.model');
+module.exports.Event = require('./event.model');
+module.exports.Room = require('./room.model');

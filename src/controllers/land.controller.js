@@ -90,7 +90,7 @@ const getCustomBigLand = catchAsync(async (req, res) => {
 const getCustomSmallLand = catchAsync(async (req, res) => {
   const lands = await landService.queryAllSmallLands(req.body.idBigLand);
   if (lands.length === 0) {
-    res.status(httpStatus.OK).send({ status: false });
+    res.status(httpStatus.OK).send({ status: false, data:[] });
   }
   res.status(httpStatus.OK).send({ status: true, data: lands });
 });

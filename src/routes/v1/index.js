@@ -1,6 +1,8 @@
 const express = require('express');
 
-// const authRoute = require('./auth.route');
+const authRoute = require('./auth.route');
+const marketRoute = require('./market.route');
+const presaleRoute = require('./presale.route');
 const userRoute = require('./user.route');
 const landRoute = require('./land.route');
 const cartRoute = require('./cart.route');
@@ -9,7 +11,8 @@ const miningRoute = require('./mining.route');
 const boxRoute = require('./box.route');
 const heroRoute = require('./hero.route');
 const docsRoute = require('./docs.route');
-const loginRoute = require('./historyLogin.route');
+const loginHistoryRoute = require('./historyLogin.route');
+const loginRoute = require('./login.route');
 const transRoute = require('./historyTrans.route');
 const config = require('../../config/config');
 
@@ -20,10 +23,18 @@ const defaultRoutes = [
     path: '/land',
     route: landRoute,
   },
-  // {
-  //   path: '/user',
-  //   route: userRoute,
-  // },
+  {
+    path: '/market',
+    route: marketRoute,
+  },
+  {
+    path: '/presale',
+    route: presaleRoute,
+  },
+  {
+    path: '/auth',
+    route: authRoute,
+  },
   {
     path: '/cart',
     route: cartRoute,
@@ -37,6 +48,10 @@ const defaultRoutes = [
     route: meRoute,
   },
   {
+    path: '/login',
+    route: loginRoute,
+  },
+  {
     path: '/mining',
     route: miningRoute,
   },
@@ -46,7 +61,7 @@ const defaultRoutes = [
   },
   {
     path: '/history',
-    route: loginRoute,
+    route: loginHistoryRoute,
   },
   {
     path: '/history',
